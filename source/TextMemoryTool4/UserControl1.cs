@@ -6,6 +6,10 @@ namespace TextMemoryTool4
 {
 	public partial class UserControl1 : UserControl
 	{
+		// 定数
+		// iniファイルで改行を表す記号をここで定義
+		const string rn = "<rn>";
+
 		// 変数
 		string myName = "";		// 自身のForm1上での名前を保存
 		string myText = "";		// 自身のTextBoxの内容を保存
@@ -43,7 +47,10 @@ namespace TextMemoryTool4
 			myName = this.Name;
 
 			// iniファイルからの読み込み
-			tbText.Text = ini.getValueString(myName, "Text");
+			string s = ini.getValueString(myName, "Text");
+			// 独自の改行記号を改行に置換
+			tbText.Text = s.Replace(rn, "\r\n");
+
 		}
 
 		// TextBoxの中身をプロパティでアクセス可能にする
@@ -83,7 +90,8 @@ namespace TextMemoryTool4
 		// テキスト内容に変化があれば変数に格納しておく
 		private void tbText_TextChanged(object sender, EventArgs e)
 		{
-			myText = tbText.Text;
+			// 改行を独自に定義した改行記号に変更
+			myText = tbText.Text.Replace("\r\n", rn); ;
 		}
 	}
 }

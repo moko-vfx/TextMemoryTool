@@ -6,9 +6,7 @@ namespace TextMemoryTool4
 {
 	class InifileUtils
 	{
-		/// <summary>
-		/// iniファイルのパスを保持
-		/// </summary>
+		// iniファイルのパスを保持
 		public String filePath { get; set; }
 		
 		// ==========================================================
@@ -32,20 +30,13 @@ namespace TextMemoryTool4
 			string lpFileName);
 		// ==========================================================
 
-		/// <summary>
-		/// コンストラクタ(デフォルト)
-		/// </summary>
+		// コンストラクタ
 		public InifileUtils()
 		{
 			filePath = AppDomain.CurrentDomain.BaseDirectory + "Default.ini";
 		}
 
-		/// <summary>
-		/// iniファイル中のセクションのキーを指定して、文字列を返す
-		/// </summary>
-		/// <param name="section"></param>
-		/// <param name="key"></param>
-		/// <returns></returns>
+		// iniファイル中のセクションのキーを指定して、文字列を返す
 		public String getValueString(String section, String key)
 		{
 			StringBuilder sb = new StringBuilder(1024);
@@ -61,12 +52,7 @@ namespace TextMemoryTool4
 			return sb.ToString();
 		}
 
-		/// <summary>
-		/// 指定したセクション、キーに文字列を書き込む
-		/// </summary>
-		/// <param name="section"></param>
-		/// <param name="key"></param>
-		/// <param name="val"></param>
+		// 指定したセクション、キーに文字列を書き込む
 		public void setValue(String section, String key, String val)
 		{
 			WritePrivateProfileString(section, key, val, filePath);
