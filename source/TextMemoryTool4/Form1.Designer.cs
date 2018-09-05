@@ -404,7 +404,8 @@
 			this.MaximumSize = new System.Drawing.Size(800, 330);
 			this.MinimumSize = new System.Drawing.Size(300, 330);
 			this.Name = "Form1";
-			this.Text = "Text Memory Tool v.4";
+			this.Text = "Text Memory Tool v.5";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);

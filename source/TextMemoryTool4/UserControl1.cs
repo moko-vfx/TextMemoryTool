@@ -30,10 +30,14 @@ namespace TextMemoryTool4
 			// ツール終了時の自身のコントロール解放時の挙動
 			this.Disposed += (sender, args) =>
 			{
-				// TextBox内の文字列をiniファイルへ書き込む
-				// Disposeの時点でTextBox.Textは解放済みのようなので取得できません
-				// myText変数に格納している値は生きているのでそちらを利用しています
-				ini.setValue(myName, "Text", myText);
+				// 保存ダイアログで保存するを選んだ場合
+				if (Form1.flagSave == true)
+				{
+					// TextBox内の文字列をiniファイルへ書き込む
+					// Disposeの時点でTextBox.Textは解放済みのようなので取得できません
+					// myText変数に格納している値は生きているのでそちらを利用しています
+					ini.setValue(myName, "Text", myText);
+				}
 			};
 		}
 
@@ -51,6 +55,8 @@ namespace TextMemoryTool4
 			// 独自の改行記号を改行に置換
 			tbText.Text = s.Replace(rn, "\r\n");
 
+			// TextBoxの変更フラグをfalseにしておく
+			Form1.flagChange = false;
 		}
 
 		// TextBoxの中身をプロパティでアクセス可能にする
@@ -90,6 +96,9 @@ namespace TextMemoryTool4
 		// テキスト内容に変化があれば変数に格納しておく
 		private void tbText_TextChanged(object sender, EventArgs e)
 		{
+			// TextBoxの変更フラグを立てる
+			Form1.flagChange = true;
+
 			// 改行を独自に定義した改行記号に変更
 			myText = tbText.Text.Replace("\r\n", rn); ;
 		}
